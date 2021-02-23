@@ -1,0 +1,13 @@
+[nats]
+broker-url = "nats-server"
+broker-port = 4222
+
+[rotator]
+type = "dummy"
+name = " 2m 2x10el"
+has-azimuth = true
+has-elevation = true
+pollingrate = "100ms"
+azimuth-min = 0
+azimuth-max = 360
+azimuth-stop = 0

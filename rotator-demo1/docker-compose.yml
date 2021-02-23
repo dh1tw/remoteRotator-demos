@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  tribander: &rotator
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/rotator/Dockerfile
+      args:
+        - release=v0.5.2
+        - arch=amd64
+        - os=linux
+    depends_on:
+      - nats-server
+    links:
+      - nats-server:nats-server
+    command: remoteRotator server nats --config=tribander.toml
+
+  40m:
+    <<: *rotator
+    command: remoteRotator server nats --config=40m.toml
+
+  warc:
+    <<: *rotator
+    command: remoteRotator server nats --config=warc.toml
+
+  vhf:
+    <<: *rotator
+    command: remoteRotator server nats --config=vhf.toml
+
+  uhf:
+    <<: *rotator
+    command: remoteRotator server nats --config=uhf.toml
+
+  web:
+    <<: *rotator
+    command: remoteRotator web -w 0.0.0.0 -k 4001 -u nats-server
+    ports:
+      - "4001:4001"
+
+  nats-server:
+    image: nats:2
+    restart: always

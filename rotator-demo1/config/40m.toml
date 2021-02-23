@@ -1,0 +1,13 @@
+[nats]
+broker-url = "nats-server"
+broker-port = 4222
+
+[rotator]
+type = "dummy"
+name = "40m 3L"
+has-azimuth = true
+has-elevation = false
+pollingrate = "100ms"
+azimuth-min = 45
+azimuth-max = 270
+azimuth-stop = 0

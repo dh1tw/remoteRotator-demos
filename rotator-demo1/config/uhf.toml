@@ -1,0 +1,15 @@
+[nats]
+broker-url = "nats-server"
+broker-port = 4222
+
+[rotator]
+type = "dummy"
+name = "UHF Group"
+has-azimuth = true
+has-elevation = true
+pollingrate = "100ms"
+azimuth-min = 0
+azimuth-max = 360
+azimuth-stop = 0
+elevation-min = 30
+elevation-max = 170
