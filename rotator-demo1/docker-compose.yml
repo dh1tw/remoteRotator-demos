@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./compose/rotator/Dockerfile
       args:
-        - release=v0.5.2
+        - release=v0.6.2
         - arch=amd64
         - os=linux
     depends_on:
